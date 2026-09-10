@@ -1,0 +1,921 @@
+<title>Radiografía operativa Lollan's</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --paper:#EDEBE6;
+  --surface:#F8F7F4;
+  --surface-2:#E4E1DA;
+  --ink:#16181A;
+  --ink-2:#5A5E60;
+  --ink-3:#82868A;
+  --rule:#D3D0C8;
+  --rule-strong:#B4B0A6;
+  --maquina:#0E4C4C;
+  --maquina-soft:#D8E5E2;
+  --ok:#3D6B3F;
+  --warn:#8F6200;
+  --crit:#A32E22;
+  --crit-soft:#F0DDD9;
+  --shadow:0 1px 2px rgba(22,24,26,.06);
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --disp:"Archivo","IBM Plex Sans",-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#131614; --surface:#1B1F1D; --surface-2:#252A27;
+    --ink:#E9E7E1; --ink-2:#A2A6A2; --ink-3:#7C817D;
+    --rule:#2E3431; --rule-strong:#414845;
+    --maquina:#63C3B4; --maquina-soft:#13332F;
+    --ok:#7FB37E; --warn:#D7A63C; --crit:#E28477; --crit-soft:#3A211D;
+    --shadow:0 1px 2px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#131614; --surface:#1B1F1D; --surface-2:#252A27;
+  --ink:#E9E7E1; --ink-2:#A2A6A2; --ink-3:#7C817D;
+  --rule:#2E3431; --rule-strong:#414845;
+  --maquina:#63C3B4; --maquina-soft:#13332F;
+  --ok:#7FB37E; --warn:#D7A63C; --crit:#E28477; --crit-soft:#3A211D;
+  --shadow:0 1px 2px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px; margin:0 auto; padding-inline:20px; padding-block:0}
+.prose{max-width:68ch}
+h1,h2,h3,h4{font-family:var(--disp); text-wrap:balance; margin:0; letter-spacing:-.015em}
+p{margin:0 0 .9em}
+a{color:var(--maquina)}
+:focus-visible{outline:2px solid var(--maquina); outline-offset:2px; border-radius:2px}
+
+/* ---------- eyebrow / labels ---------- */
+.eyebrow{
+  font-family:var(--mono); font-size:11px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:1px solid var(--rule-strong); padding-block:44px 30px}
+.mast .kicker{display:flex; gap:14px; flex-wrap:wrap; align-items:baseline; margin-bottom:22px}
+.mast h1{font-size:clamp(34px,7vw,62px); font-weight:800; line-height:1.02; letter-spacing:-.03em; max-width:16ch}
+.mast .sub{margin-top:18px; font-size:clamp(16px,2.2vw,19px); color:var(--ink-2); max-width:60ch}
+.stamp{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  border:1px solid var(--rule-strong); color:var(--ink-2);
+  padding:3px 8px; border-radius:2px; white-space:nowrap;
+}
+
+/* ---------- key figures ---------- */
+.figs{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0; margin-top:34px; border-top:1px solid var(--rule)}
+.fig{padding:18px 20px 18px 0; border-right:1px solid var(--rule)}
+.fig:last-child{border-right:0}
+.fig .n{font-family:var(--disp); font-weight:700; font-size:clamp(28px,4.4vw,38px); line-height:1; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.fig .n small{font-size:.5em; font-weight:600; letter-spacing:0; color:var(--ink-2)}
+.fig .l{margin-top:8px; font-size:13px; line-height:1.35; color:var(--ink-2)}
+.fig.alarm .n{color:var(--crit)}
+
+/* ---------- nav ---------- */
+nav.toc{
+  position:sticky; top:0; z-index:40; background:var(--paper);
+  border-bottom:1px solid var(--rule); margin-top:0;
+}
+nav.toc ol{
+  list-style:none; margin:0; padding:0; display:flex; gap:0;
+  overflow-x:auto; scrollbar-width:thin;
+}
+nav.toc a{
+  display:block; white-space:nowrap; text-decoration:none; color:var(--ink-2);
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.04em;
+  padding:11px 14px 10px; border-bottom:2px solid transparent;
+}
+nav.toc a:hover{color:var(--ink); border-bottom-color:var(--rule-strong)}
+nav.toc li:first-child a{padding-left:0}
+
+/* ---------- sections ---------- */
+section{padding-block:52px; border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.shead{display:flex; gap:16px; align-items:baseline; margin-bottom:8px}
+.shead .num{font-family:var(--mono); font-size:12px; color:var(--maquina); font-weight:600; padding-top:4px}
+h2{font-size:clamp(23px,3.6vw,31px); font-weight:700; letter-spacing:-.022em}
+.lede{color:var(--ink-2); font-size:17px; max-width:66ch; margin-top:12px}
+h3{font-size:17px; font-weight:700; margin:34px 0 12px; letter-spacing:-.01em}
+h4{font-size:14px; font-weight:600; margin:0 0 6px}
+
+/* ---------- stage rail ---------- */
+.rail{list-style:none; margin:26px 0 0; padding:0; border-top:1px solid var(--rule)}
+.rail li{
+  display:grid; grid-template-columns:38px 1fr; gap:0 16px;
+  padding:13px 0; border-bottom:1px solid var(--rule); align-items:start;
+}
+.rail .st{
+  font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink-3);
+  font-variant-numeric:tabular-nums; padding-top:2px;
+}
+.rail .body{display:flex; flex-wrap:wrap; gap:6px 12px; align-items:baseline}
+.rail b{font-weight:600; font-size:15.5px}
+.rail .who{font-size:13.5px; color:var(--ink-2)}
+.rail li.hinge{background:linear-gradient(90deg,var(--maquina-soft),transparent 70%)}
+.rail li.hinge .st{color:var(--maquina)}
+
+/* ---------- pills ---------- */
+.pill{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+  padding:2px 7px; border-radius:2px; border:1px solid var(--rule-strong); color:var(--ink-2);
+  white-space:nowrap;
+}
+.pill.plant{border-color:var(--maquina); color:var(--maquina)}
+.pill.ext{border-style:dashed}
+.pill.crit{border-color:var(--crit); color:var(--crit); background:var(--crit-soft)}
+.pill.warn{border-color:var(--warn); color:var(--warn)}
+.pill.ok{border-color:var(--ok); color:var(--ok)}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto; margin-top:22px; border-top:1px solid var(--rule-strong)}
+table{border-collapse:collapse; width:100%; min-width:620px; font-size:14px}
+th{
+  text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3);
+  padding:10px 14px 9px 0; border-bottom:1px solid var(--rule); vertical-align:bottom;
+}
+td{padding:11px 14px 11px 0; border-bottom:1px solid var(--rule); vertical-align:top; line-height:1.45}
+td:last-child,th:last-child{padding-right:0}
+tbody tr:hover{background:var(--surface)}
+td.num{font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink-2); font-size:13px; white-space:nowrap}
+td.board{font-weight:600}
+.mono{font-family:var(--mono); font-size:12.5px}
+
+/* ---------- figure / svg ---------- */
+figure{margin:28px 0 0}
+.svgbox{overflow-x:auto; border:1px solid var(--rule); background:var(--surface); border-radius:3px; padding:18px 16px}
+.svgbox svg{display:block; min-width:820px; max-width:100%; height:auto; color:var(--ink)}
+figcaption{margin-top:12px; font-size:13.5px; color:var(--ink-2); max-width:70ch}
+.sv-box{fill:var(--surface-2); stroke:var(--rule-strong); stroke-width:1}
+.sv-t{font-family:"IBM Plex Sans",sans-serif; font-size:13px; font-weight:600; fill:currentColor}
+.sv-s{font-family:"IBM Plex Mono",monospace; font-size:10px; fill:var(--ink-3)}
+.sv-e{font-family:"IBM Plex Mono",monospace; font-size:10px; fill:var(--ink-2)}
+.sv-lane{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.14em; fill:var(--ink-3)}
+.sv-line{stroke:var(--maquina); stroke-width:1.6; fill:none}
+.sv-fault{stroke:var(--crit); stroke-width:1.4; fill:none; stroke-dasharray:5 4}
+.sv-faultt{font-family:"IBM Plex Mono",monospace; font-size:10px; fill:var(--crit)}
+
+/* ---------- cards / grids ---------- */
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:18px; margin-top:24px}
+.grid3{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:16px; margin-top:24px}
+.card{border:1px solid var(--rule); background:var(--surface); border-radius:3px; padding:16px 17px}
+.card h4{font-family:var(--disp); font-size:15px; letter-spacing:-.008em}
+.card p{font-size:14px; color:var(--ink-2); margin:0}
+.card ul{margin:8px 0 0; padding-left:17px; font-size:13.5px; color:var(--ink-2)}
+.card li{margin-bottom:4px}
+
+/* screen cards */
+.screen{border:1px solid var(--rule); border-left:3px solid var(--maquina); background:var(--surface); border-radius:0 3px 3px 0; padding:15px 17px}
+.screen .role{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--maquina); display:block; margin-bottom:5px}
+.screen h4{font-family:var(--disp); font-size:16px; margin-bottom:7px}
+.screen ul{margin:0; padding-left:17px; font-size:13.5px; color:var(--ink-2)}
+.screen li{margin-bottom:4px}
+
+/* ---------- callouts ---------- */
+.note{
+  border-left:3px solid var(--warn); background:var(--surface);
+  padding:14px 17px; margin:24px 0 0; font-size:14.5px; border-radius:0 3px 3px 0;
+}
+.note.stop{border-left-color:var(--crit)}
+.note .lbl{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--warn); display:block; margin-bottom:5px; font-weight:500;
+}
+.note.stop .lbl{color:var(--crit)}
+.note p:last-child{margin-bottom:0}
+
+/* ---------- gap bars ---------- */
+.bars{margin-top:24px; display:flex; flex-direction:column; gap:11px}
+.bar{display:grid; grid-template-columns:1fr; gap:5px}
+.bar .top{display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:13.5px}
+.bar .top b{font-weight:600}
+.bar .top span{font-family:var(--mono); font-size:12px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap}
+.track{height:7px; background:var(--surface-2); border-radius:1px; overflow:hidden; display:flex}
+.track i{display:block; height:100%}
+.seg-none{background:var(--crit)}
+.seg-part{background:var(--warn)}
+.seg-ok{background:var(--ok)}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; font-size:12px; color:var(--ink-2)}
+.legend span{display:flex; align-items:center; gap:6px}
+.legend i{width:11px; height:11px; border-radius:1px; display:block}
+
+/* ---------- roadmap ---------- */
+.phases{margin-top:26px; border-top:1px solid var(--rule-strong)}
+.phase{display:grid; grid-template-columns:132px 1fr; gap:0 22px; padding:19px 0; border-bottom:1px solid var(--rule)}
+.phase .when{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--maquina); font-weight:500; padding-top:3px}
+.phase h4{font-family:var(--disp); font-size:17px; margin-bottom:7px}
+.phase p{font-size:14.5px; color:var(--ink-2); margin:0}
+.phase ul{margin:8px 0 0; padding-left:18px; font-size:14px; color:var(--ink-2)}
+.phase li{margin-bottom:3px}
+
+/* ---------- decisions ---------- */
+.q{border-top:1px solid var(--rule); padding:16px 0}
+.q:first-of-type{border-top:1px solid var(--rule-strong)}
+.q .qq{font-family:var(--disp); font-weight:700; font-size:16.5px; margin-bottom:6px; display:flex; gap:11px}
+.q .qq em{font-family:var(--mono); font-style:normal; font-size:12px; color:var(--maquina); font-weight:600; padding-top:3px}
+.q p{font-size:14.5px; color:var(--ink-2); margin:0 0 0 27px}
+
+footer{padding-block:38px 56px; font-size:13px; color:var(--ink-3)}
+footer p{max-width:70ch}
+
+@media (max-width:640px){
+  .fig{border-right:0; border-bottom:1px solid var(--rule); padding-right:0}
+  .figs{grid-template-columns:repeat(2,1fr); gap:0 18px}
+  .fig:nth-child(odd){border-right:1px solid var(--rule); padding-right:18px}
+  .phase{grid-template-columns:1fr; gap:8px}
+  .rail li{grid-template-columns:28px 1fr; gap:0 10px}
+  section{padding-block:40px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">
+    <span class="eyebrow">Lollan's · Caravaca de la Cruz &amp; Alhama de Murcia</span>
+    <span class="stamp">Análisis previo al diseño</span>
+    <span class="stamp">10 sep 2026</span>
+  </div>
+  <h1>Radiografía operativa de la fábrica</h1>
+  <p class="sub">Todo lo que hoy está repartido entre Monday, Make, Query Pro, Dropbox, Trello, Excel y libretas de papel —
+  ordenado en un solo mapa— para poder decidir qué pantallas necesita la web app y en qué orden construirlas.</p>
+
+  <div class="figs">
+    <div class="fig"><div class="n">12</div><div class="l">tableros de Monday encadenados</div></div>
+    <div class="fig"><div class="n">14</div><div class="l">automatizaciones Make documentadas</div></div>
+    <div class="fig"><div class="n">15</div><div class="l">procesos maestros identificados</div></div>
+    <div class="fig alarm"><div class="n">0<small> / 15</small></div><div class="l">procesos con documentación completa</div></div>
+    <div class="fig alarm"><div class="n">0<small> / 14</small></div><div class="l">KPIs con dato real hoy</div></div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Secciones">
+  <ol>
+    <li><a href="#negocio">01 Negocio</a></li>
+    <li><a href="#flujo">02 Flujo real</a></li>
+    <li><a href="#monday">03 Tableros Monday</a></li>
+    <li><a href="#make">04 Automatizaciones</a></li>
+    <li><a href="#procesos">05 Procesos maestros</a></li>
+    <li><a href="#personas">06 Personas</a></li>
+    <li><a href="#datos">07 Datos y KPIs</a></li>
+    <li><a href="#capacidad">08 Capacidad</a></li>
+    <li><a href="#dolor">09 Dónde duele</a></li>
+    <li><a href="#app">10 La web app</a></li>
+    <li><a href="#pantallas">11 Pantallas</a></li>
+    <li><a href="#plan">12 Plan</a></li>
+    <li><a href="#decisiones">13 Decisiones</a></li>
+  </ol>
+</nav>
+
+<!-- ================= 01 ================= -->
+<section id="negocio">
+  <div class="shead"><span class="num">01</span><h2>Qué es Lollan's, operativamente</h2></div>
+  <p class="lede">Un fabricante español de calzado de hogar B2B y marca privada, con <strong>dos rutas industriales
+  distintas que comparten las mismas etapas iniciales</strong> y se separan justo después del aparado. Esa bifurcación
+  es la decisión estructural que condiciona todo el sistema.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Ruta Caravaca · Inyección de PVC</h4>
+      <p>Planta principal. Concentra almacén, goma, cuñas, corte, reparto, recepción de aparado, inyección, vías,
+      embalaje, almacén y expedición.</p>
+      <ul>
+        <li>4 máquinas de inyección; habitualmente 2–3 de día y 2 de noche</li>
+        <li>12 estaciones rotativas por operario, 14–15 s por estación</li>
+        <li>4 prensas de corte y más de 100 troqueles</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Ruta Alhama · Vulcanización de caucho</h4>
+      <p>Planta secundaria. Recibe desde Caravaca los cortes aparados, las planchas de goma y los materiales; devuelve
+      pares vulcanizados.</p>
+      <ul>
+        <li>~20 puestos individuales; normalmente 1–2 vulcanizadores</li>
+        <li>Ciclo aproximadamente el doble de lento que la inyección</li>
+        <li>El punto exacto de retorno y los controles de recepción siguen sin definir</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <span class="lbl">Regla de negocio que ya vive en Monday</span>
+    <p>El enrutado está automatizado por tipo de cliente: <span class="mono">Tipo Cliente = Lollans → Inyección</span>,
+    <span class="mono">= Saez → Vulcanizado</span>. En el sistema propio esto no debe ser un <em>if</em> escondido en una
+    automatización: debe ser un campo <strong>Ruta</strong> en la ficha del modelo, versionado y visible.</p>
+  </div>
+
+  <h3>El objeto central del sistema: la nota de fabricación</h3>
+  <p class="prose">Todo el flujo —físico y digital— gira alrededor de la <strong>nota de fabricación</strong>. Nace en Query Pro
+  a partir de un pedido, se imprime en PDF, se sube a Dropbox, Make la lee y la convierte en un ítem de Monday, y a partir
+  de ahí viaja de tablero en tablero hasta que el camión sale. En paralelo viaja el papel físico por la fábrica.
+  <strong>La web app debe tener una única entidad Nota, y esa entidad es la columna vertebral del producto.</strong></p>
+</section>
+
+<!-- ================= 02 ================= -->
+<section id="flujo">
+  <div class="shead"><span class="num">02</span><h2>El flujo real de fábrica, paso a paso</h2></div>
+  <p class="lede">Catorce etapas confirmadas en la documentación. Marcadas en color las tres que hoy son
+  <strong>puntos ciegos</strong>: donde el trabajo sale del control de la fábrica o cambia de planta.</p>
+
+  <ol class="rail">
+    <li><span class="st">01</span><div class="body"><b>Pedido y condiciones</b><span class="who">Comercial registra pedido, versión del modelo y fecha comprometida</span><span class="pill">Jonathan</span></div></li>
+    <li><span class="st">02</span><div class="body"><b>Alta en Query Pro y nota de fabricación</b><span class="who">División si supera 1.200 pares; se imprime hoja de corte</span><span class="pill">Cati</span></div></li>
+    <li><span class="st">03</span><div class="body"><b>Pedido a proveedor</b><span class="who">Generado automáticamente desde las notas de corte</span><span class="pill">Cati</span></div></li>
+    <li><span class="st">04</span><div class="body"><b>Recepción, identificación y ubicación</b><span class="who">Albarán, lote, reserva de materia prima</span><span class="pill plant">Caravaca</span></div></li>
+    <li><span class="st">05</span><div class="body"><b>Preparación de goma y compuestos</b><span class="who">Grano, triturado y reciclado de goma</span><span class="pill plant">Caravaca</span></div></li>
+    <li><span class="st">06</span><div class="body"><b>Preparación de cuñas</b><span class="who">Serrín, corcho y cola al agua; ~10 tipos de cuña; se produce con previsión</span><span class="pill">Juan Carlos</span></div></li>
+    <li><span class="st">07</span><div class="body"><b>Corte de tejido y plantas</b><span class="who">Dos cortes distintos: tejido y planta, con 1–2 días de desfase</span><span class="pill">Rubén · Porretas · Juan Carlos</span></div></li>
+    <li class="hinge"><span class="st">08</span><div class="body"><b>Reparto a aparadoras</b><span class="who">Furgoneta; entrega y recogida en domicilios de Caravaca y Cehegín</span><span class="pill ext">Externo</span><span class="pill crit">Punto ciego</span></div></li>
+    <li class="hinge"><span class="st">09</span><div class="body"><b>Aparado a domicilio</b><span class="who">10–15 aparadoras, máquina plana y ribeteadora, pago a destajo por modelo</span><span class="pill ext">Externo</span><span class="pill crit">Punto ciego</span></div></li>
+    <li><span class="st">10</span><div class="body"><b>Control previo de pares</b><span class="who">Verificación de cantidad y calidad antes de entrar en la ruta de suela</span><span class="pill warn">Por validar</span></div></li>
+    <li><span class="st">11</span><div class="body"><b>Inyección de PVC</b><span class="who">Corte al molde, cuña de corcho, inyección; revisión y carro de madera por números</span><span class="pill plant">Caravaca</span></div></li>
+    <li class="hinge"><span class="st">11b</span><div class="body"><b>Traslado a Alhama y vulcanización</b><span class="who">Cortes aparados, planchas de goma y materiales; sin albarán interno hoy</span><span class="pill plant">Alhama</span><span class="pill crit">Punto ciego</span></div></li>
+    <li><span class="st">12</span><div class="body"><b>Vías: limpieza y acabado</b><span class="who">Hilos, rebabas, serret, percha, etiquetas, bolsas y cajas según cliente; 8–10 personas, día y noche</span><span class="pill">Marina</span></div></li>
+    <li><span class="st">13</span><div class="body"><b>Recuento y detección de faltas</b><span class="who">Se comparan pares buenos contra pedido; las faltas vuelven a Corte</span><span class="pill crit">Bucle de coste</span></div></li>
+    <li><span class="st">14</span><div class="body"><b>Embalaje, paletizado, almacén y carga</b><span class="who">Revisores externos de cliente en almacén; packing list y cita de carga</span><span class="pill">Manolo · Jordi</span></div></li>
+  </ol>
+
+  <div class="note stop">
+    <span class="lbl">El bucle que se paga dos veces</span>
+    <p>Una falta detectada en vías o embalaje devuelve el par al <strong>paso 07</strong>: hay que volver a cortar, volver
+    a repartir, volver a aparar y volver a inyectar. Es el único retroceso del flujo y, según la propia documentación,
+    «quita mucha eficiencia en la producción». Cualquier funcionalidad que adelante esa detección —conteo firmado en
+    aparado, control previo antes de suela— vale más que cualquier dashboard.</p>
+  </div>
+</section>
+
+<!-- ================= 03 ================= -->
+<section id="monday">
+  <div class="shead"><span class="num">03</span><h2>Lo que había montado en Monday</h2></div>
+  <p class="lede">Doce tableros encadenados. La nota no se copia: <strong>se mueve</strong>, y cada movimiento lo dispara
+  un cambio de estado. Ese es el patrón que hay que replicar, no la interfaz de Monday.</p>
+
+  <figure>
+    <div class="svgbox">
+      <svg viewBox="0 0 1080 392" role="img" aria-label="Mapa de los tableros de Monday: la nota nace en CRM, pasa por Pedidos, Alta de Notas y Notas de Producción, baja a la cadena Corte, Aparado, Inyección o Vulcanizado, Vías y Almacén, y termina en Pedidos Enviados. Cualquier tablero de producción puede clonar la nota al tablero Faltas, que la devuelve a su fase cuando llega el material.">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--maquina)"/>
+          </marker>
+          <marker id="arf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--crit)"/>
+          </marker>
+        </defs>
+
+        <text x="0" y="18" class="sv-lane">OFICINA</text>
+        <rect class="sv-box" x="30" y="44" width="200" height="54" rx="2"/>
+        <text x="46" y="68" class="sv-t">CRM</text><text x="46" y="85" class="sv-s">Jonathan · Antonio</text>
+        <rect class="sv-box" x="290" y="44" width="200" height="54" rx="2"/>
+        <text x="306" y="68" class="sv-t">Pedidos</text><text x="306" y="85" class="sv-s">Cati</text>
+        <rect class="sv-box" x="550" y="44" width="200" height="54" rx="2"/>
+        <text x="566" y="68" class="sv-t">Alta de Notas</text><text x="566" y="85" class="sv-s">Antonio</text>
+        <rect class="sv-box" x="810" y="44" width="200" height="54" rx="2"/>
+        <text x="826" y="68" class="sv-t">Notas de Producción</text><text x="826" y="85" class="sv-s">Cati · Marina</text>
+
+        <line class="sv-line" x1="232" y1="71" x2="286" y2="71" marker-end="url(#ar)"/>
+        <text x="259" y="36" class="sv-e" text-anchor="middle">confirmado</text>
+        <line class="sv-line" x1="492" y1="71" x2="546" y2="71" marker-end="url(#ar)"/>
+        <text x="519" y="36" class="sv-e" text-anchor="middle">PDF Query</text>
+        <line class="sv-line" x1="752" y1="71" x2="806" y2="71" marker-end="url(#ar)"/>
+        <text x="779" y="36" class="sv-e" text-anchor="middle">mover notas</text>
+
+        <path class="sv-line" d="M910,100 L910,132 L100,132 L100,166" marker-end="url(#ar)"/>
+        <text x="500" y="126" class="sv-e" text-anchor="middle">Fase = Corte · Estado = En proceso</text>
+
+        <text x="0" y="156" class="sv-lane">PRODUCCIÓN</text>
+        <rect class="sv-box" x="15" y="170" width="170" height="54" rx="2"/>
+        <text x="30" y="194" class="sv-t">Corte</text><text x="30" y="211" class="sv-s">tejido + plantas</text>
+        <rect class="sv-box" x="235" y="170" width="170" height="54" rx="2"/>
+        <text x="250" y="194" class="sv-t">Aparado</text><text x="250" y="211" class="sv-s">sub-items por paso</text>
+        <rect class="sv-box" x="455" y="170" width="170" height="54" rx="2"/>
+        <text x="470" y="194" class="sv-t">Inyección</text><text x="470" y="211" class="sv-s">o Vulcanizado</text>
+        <rect class="sv-box" x="675" y="170" width="170" height="54" rx="2"/>
+        <text x="690" y="194" class="sv-t">Vías</text><text x="690" y="211" class="sv-s">limpieza · etiquetas</text>
+        <rect class="sv-box" x="895" y="170" width="170" height="54" rx="2"/>
+        <text x="910" y="194" class="sv-t">Almacén</text><text x="910" y="211" class="sv-s">recuento · carga</text>
+
+        <line class="sv-line" x1="187" y1="197" x2="231" y2="197" marker-end="url(#ar)"/>
+        <text x="209" y="164" class="sv-e" text-anchor="middle">tejido</text>
+        <line class="sv-line" x1="407" y1="197" x2="451" y2="197" marker-end="url(#ar)"/>
+        <text x="429" y="164" class="sv-e" text-anchor="middle">plantas</text>
+        <line class="sv-line" x1="627" y1="197" x2="671" y2="197" marker-end="url(#ar)"/>
+        <text x="649" y="164" class="sv-e" text-anchor="middle">hecho</text>
+        <line class="sv-line" x1="847" y1="197" x2="891" y2="197" marker-end="url(#ar)"/>
+        <text x="869" y="164" class="sv-e" text-anchor="middle">hecho</text>
+
+        <path class="sv-fault" d="M100,226 L100,265 M320,226 L320,265 M540,226 L540,265 M760,226 L760,265 M920,226 L920,265 M100,265 L920,265"/>
+        <line class="sv-fault" x1="440" y1="265" x2="440" y2="296" marker-end="url(#arf)"/>
+        <rect class="sv-box" x="340" y="300" width="200" height="54" rx="2" style="stroke:var(--crit)"/>
+        <text x="356" y="324" class="sv-t">Faltas</text><text x="356" y="341" class="sv-s">Cati · Marina</text>
+        <text x="560" y="262" class="sv-faultt">Estado = Faltas + Comentario obligatorio → Make clona el ítem</text>
+
+        <path class="sv-fault" d="M336,327 L60,327 L60,230" marker-end="url(#arf)"/>
+        <text x="60" y="345" class="sv-faultt">material recibido → vuelve a su fase</text>
+
+        <line class="sv-line" x1="1000" y1="226" x2="1000" y2="296" marker-end="url(#ar)"/>
+        <rect class="sv-box" x="880" y="300" width="185" height="54" rx="2"/>
+        <text x="896" y="324" class="sv-t">Pedidos Enviados</text><text x="896" y="341" class="sv-s">archivo · facturación</text>
+        <text x="1010" y="266" class="sv-e" text-anchor="end">sale el camión</text>
+      </svg>
+    </div>
+    <figcaption>Cómo se comunican los tableros. La línea continua es el camino normal de una nota; la discontinua roja es
+    el circuito de faltas, que puede abrirse desde cualquier tablero de producción y devuelve la nota a su fase anterior.
+    Los seis tableros de <em>Partes diarios</em> (corte, aparado, inyección, vías, almacén, Alhama) no aparecen: no reciben
+    la nota, la leen — se refrescan solos cada día a las 21:30.</figcaption>
+  </figure>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Tablero</th><th>Área</th><th>Para qué sirve</th><th>Quién lo usa</th></tr></thead>
+      <tbody>
+        <tr><td class="board">CRM</td><td>Comercial</td><td>Seguimiento de oportunidades</td><td>Jonathan, Antonio</td></tr>
+        <tr><td class="board">Pedidos</td><td>Oficina</td><td>Embudo de pedidos confirmados</td><td>Cati</td></tr>
+        <tr><td class="board">Alta de Notas</td><td>Oficina</td><td>Datos técnicos + PDF adjunto de la nota</td><td>Antonio</td></tr>
+        <tr><td class="board">Notas de Producción</td><td>Producción</td><td>Vista global de todo lo que está vivo</td><td>Cati, Marina</td></tr>
+        <tr><td class="board">Corte</td><td>Producción</td><td>Lotes en corte, con cronómetro automático</td><td>Operarios de corte</td></tr>
+        <tr><td class="board">Aparado</td><td>Producción</td><td>Sub-items por paso de aparado</td><td>Jesús</td></tr>
+        <tr><td class="board">Inyección / Vulcanizado</td><td>Producción</td><td>Fase de suela, según tipo de cliente</td><td>Coronel</td></tr>
+        <tr><td class="board">Vías</td><td>Producción</td><td>Limpieza, etiquetado, embolsado</td><td>Encargada de vías, Marina</td></tr>
+        <tr><td class="board">Almacén</td><td>Logística</td><td>Listo para cargar</td><td>Manolo, Jordi, Marina</td></tr>
+        <tr><td class="board">Faltas</td><td>Calidad</td><td>Centraliza cualquier incidencia</td><td>Cati, Marina</td></tr>
+        <tr><td class="board">Pedidos Enviados</td><td>Históricos</td><td>Archivo final para facturación</td><td>Marina, Cati</td></tr>
+        <tr><td class="board">Partes diarios ×6</td><td>Control</td><td>Rendimiento por sección y trabajador</td><td>Marina</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Los estados que ya usa la gente</h3>
+  <p class="prose">No hay que inventarlos. En corte, la nota tiene dos columnas independientes —<strong>Corte Tejido</strong>
+  y <strong>Corte Plantas</strong>— porque son dos trabajos distintos con personas distintas y hasta dos días de desfase.
+  Los estados son <span class="mono">En proceso · Pausa · Hecho · Falta</span>, y la prioridad es
+  <span class="mono">Urgente · Alta · Media · Baja</span>. Si una falta se marca, el comentario es obligatorio, y ese
+  detalle no es burocracia: es lo que hace que la automatización pueda actuar.</p>
+</section>
+
+<!-- ================= 04 ================= -->
+<section id="make">
+  <div class="shead"><span class="num">04</span><h2>Las automatizaciones de Make</h2></div>
+  <p class="lede">Catorce comportamientos automáticos documentados. Estos son <strong>el requisito funcional real</strong>
+  del sistema propio: no son «integraciones», son las reglas de negocio de la fábrica.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:34px">#</th><th>Disparador</th><th>Acción automática</th><th>Dónde</th></tr></thead>
+      <tbody>
+        <tr><td class="num">01</td><td>Pedido creado en el tablero Pedidos</td><td>Make o un GPT rellena varios campos del pedido a partir del PDF de Query</td><td>Oficina</td></tr>
+        <tr><td class="num">02</td><td>Pedido creado</td><td>Se generan las tareas comunes propias de ese cliente</td><td>Oficina</td></tr>
+        <tr><td class="num">03</td><td>PDFs nuevos en la carpeta Dropbox «Notas de fabricación»</td><td>Escenario <span class="mono">Alta de notas automáticas</span>: crea un ítem por nota extrayendo los datos del PDF</td><td>Oficina</td></tr>
+        <tr><td class="num">04</td><td>Estado pasa a <span class="mono">En proceso</span> en Corte</td><td>Arranca el cronómetro de la nota</td><td>Corte</td></tr>
+        <tr><td class="num">05</td><td>Corte marcado como Hecho</td><td>Notificación automática al usuario Oficina</td><td>Corte</td></tr>
+        <tr><td class="num">06</td><td>Nota de Alhama llega a Corte con pasos de cambrillones, pisos o tapas</td><td>Se crean sub-items para cortarlo todo a la vez</td><td>Corte · Alhama</td></tr>
+        <tr><td class="num">07</td><td><span class="mono">Tejido = Hecho</span></td><td>Cambia <span class="mono">Fase → Aparado</span> y lo actualiza en Notas de Producción</td><td>Corte → Aparado</td></tr>
+        <tr><td class="num">08</td><td>Nota entra en Aparado</td><td>Make crea los sub-items con los pasos de aparado del modelo</td><td>Aparado</td></tr>
+        <tr><td class="num">09</td><td>Sub-item <span class="mono">Coser plantas</span> marcado como Hecho</td><td>La nota completa pasa a Hecho</td><td>Aparado</td></tr>
+        <tr><td class="num">10</td><td>Nota lista para suela</td><td>Enrutado por <span class="mono">Tipo Cliente</span>: Lollans → Inyección, Saez → Vulcanizado</td><td>Suela</td></tr>
+        <tr><td class="num">11</td><td>Nota entra en Vías</td><td>Se genera un to-do para Marina: «Sacar etiquetas embalaje (cliente) nota #xxxx»</td><td>Vías</td></tr>
+        <tr><td class="num">12</td><td><span class="mono">Estado = Faltas</span> + comentario</td><td>El ítem se clona al tablero Faltas y notifica a Oficina</td><td>Cualquiera</td></tr>
+        <tr><td class="num">13</td><td>Almacén marca la nota como Hecho</td><td>Notas de Producción pasa a Completado y notifica a Oficina</td><td>Almacén</td></tr>
+        <tr><td class="num">14</td><td>Cada día a las 21:30</td><td>Se refrescan los seis partes diarios</td><td>Control</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <span class="lbl">Fragilidad conocida</span>
+    <p>El manual advierte al equipo: «nunca cambies ni borres columnas, eso rompería las automatizaciones» y «mantén los
+    nombres de columnas exactos, coinciden con Make». Todo el sistema depende de que nadie renombre una columna. En el
+    sistema propio, estas reglas van en el modelo de datos con identificadores estables, no en cadenas de texto que
+    cualquiera puede editar.</p>
+  </div>
+
+  <div class="note">
+    <span class="lbl">Nota sobre el alcance de este análisis</span>
+    <p>Este mapa está reconstruido a partir de la documentación de Notion, que es detallada y describe los escenarios uno
+    a uno. <strong>No he podido entrar en tu Monday ni en tu Make</strong>: se abren en tu navegador, no en el mío, y esta
+    sesión no tiene credenciales de ninguno de los dos. Para cerrar el inventario al 100 % necesito una de estas tres
+    cosas: el export del blueprint de cada escenario de Make (JSON), un token de API de Monday de solo lectura, o
+    capturas de la lista de escenarios y de las columnas de cada tablero. Con eso confirmo campos exactos, escenarios no
+    documentados y automatizaciones nativas de Monday que no pasan por Make.</p>
+  </div>
+</section>
+
+<!-- ================= 05 ================= -->
+<section id="procesos">
+  <div class="shead"><span class="num">05</span><h2>Los 15 procesos maestros y su estado documental</h2></div>
+  <p class="lede">Ya están inventariados en Notion con entrada, salida, responsable y KPI. Ninguno está completo,
+  y los tres huecos más grandes coinciden exactamente con los tres puntos ciegos del flujo.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:34px">#</th><th>Proceso</th><th>Planta</th><th>Responsable</th><th>KPI principal</th><th>Doc.</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td class="board">Pedido y nota de fabricación</td><td>Caravaca</td><td>Cati / Comercial</td><td>Pedidos completos y liberados</td><td><span class="pill warn">Parcial</span></td></tr>
+        <tr><td class="num">2</td><td class="board">Compra a proveedor</td><td>Caravaca</td><td>Cati</td><td>Entrega a tiempo</td><td><span class="pill warn">Parcial</span></td></tr>
+        <tr><td class="num">3</td><td class="board">Recepción y almacenamiento</td><td>Caravaca</td><td>Almacén / Cati</td><td>Exactitud de inventario</td><td><span class="pill warn">Parcial</span></td></tr>
+        <tr><td class="num">4</td><td class="board">Preparación de goma y reciclado</td><td>Caravaca</td><td>Producción</td><td>Kg conformes / merma</td><td><span class="pill warn">Parcial</span></td></tr>
+        <tr><td class="num">5</td><td class="board">Preparación de cuñas</td><td>Caravaca</td><td>Juan Carlos</td><td>Cuñas buenas / hora</td><td><span class="pill warn">Parcial</span></td></tr>
+        <tr><td class="num">6</td><td class="board">Corte de tejido y plantas</td><td>Caravaca</td><td>Juan Carlos · Rubén · Porretas</td><td>Aprovechamiento y faltas</td><td><span class="pill warn">Parcial</span></td></tr>
+        <tr><td class="num">7</td><td class="board">Reparto a aparado</td><td>Externo</td><td>Jesús</td><td>Tiempo y exactitud</td><td><span class="pill warn">Parcial</span></td></tr>
+        <tr><td class="num">8</td><td class="board">Aparado externo</td><td>Externo</td><td>Red de aparadoras</td><td>Aceptación a la primera</td><td><span class="pill crit">Vacía</span></td></tr>
+        <tr><td class="num">9</td><td class="board">Control previo de pares</td><td>Caravaca</td><td>Responsable de ruta</td><td>Faltas antes de suela</td><td><span class="pill crit">Por validar</span></td></tr>
+        <tr><td class="num">10</td><td class="board">Inyección de PVC</td><td>Caravaca</td><td>Coronel · Mohammed · Carlos · Jorge</td><td>Pares buenos/hora y OEE</td><td><span class="pill warn">Parcial</span></td></tr>
+        <tr><td class="num">11</td><td class="board">Transferencia Caravaca–Alhama</td><td>Ambas</td><td>Por asignar</td><td>Diferencias y tiempo de tránsito</td><td><span class="pill crit">Por validar</span></td></tr>
+        <tr><td class="num">12</td><td class="board">Vulcanización de caucho</td><td>Alhama</td><td>Por asignar</td><td>Pares buenos/hora</td><td><span class="pill crit">Por validar</span></td></tr>
+        <tr><td class="num">13</td><td class="board">Vías, limpieza y acabado</td><td>Caravaca</td><td>Marina · equipo de vías</td><td>Defectos por 100 pares</td><td><span class="pill warn">Parcial</span></td></tr>
+        <tr><td class="num">14</td><td class="board">Embalaje y almacén</td><td>Caravaca</td><td>Manolo · Jordi</td><td>Exactitud y productividad</td><td><span class="pill warn">Parcial</span></td></tr>
+        <tr><td class="num">15</td><td class="board">Carga y expedición</td><td>Caravaca</td><td>Almacén / Administración</td><td>OTIF y ocupación</td><td><span class="pill warn">Parcial</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note stop">
+    <span class="lbl">Los dos procesos sin dueño</span>
+    <p><strong>Transferencia Caravaca–Alhama</strong> y <strong>Vulcanización</strong> figuran con responsable
+    «Por asignar». Es decir: el 50 % de la capacidad industrial de la empresa opera sin propietario de proceso
+    identificado. Antes de programar la pantalla de transferencias hay que decidir quién firma la salida y quién firma
+    la recepción.</p>
+  </div>
+</section>
+
+<!-- ================= 06 ================= -->
+<section id="personas">
+  <div class="shead"><span class="num">06</span><h2>Quién hace qué, y de quién depende todo</h2></div>
+  <p class="lede">Unas 30 personas al día en fábrica más una red de 10–15 aparadoras externas. La app tiene que servir a
+  <strong>siete perfiles muy distintos</strong>, y cuatro de ellos trabajan de pie, con las manos ocupadas.</p>
+
+  <div class="grid2">
+    <div class="card"><h4>Oficina · pantalla y teclado</h4><ul>
+      <li><b>Cati</b> — pedidos, notas de fabricación, compras, recepción, albaranes, muestras</li>
+      <li><b>Santos</b> — contabilidad, Query, packing lists, fichajes, facturación, Intrastat, modelo 349</li>
+      <li><b>Marina</b> — etiquetas y embalaje, cuentas de vías y de aparado, ensayos, suministros</li>
+      <li><b>Jonathan</b> — comercial: muestras, ferias, visitas, negociación, reclamaciones, francés</li>
+      <li><b>Antonio hijo</b> — mejora continua, documentación, escandallos y controlling</li>
+    </ul></div>
+    <div class="card"><h4>Fábrica · móvil, de pie</h4><ul>
+      <li><b>Jesús</b> — reparto y enlace con las aparadoras externas</li>
+      <li><b>Juan Carlos</b> — cuñas, plantas y muestras</li>
+      <li><b>Rubén y Porretas</b> — corte de tejido</li>
+      <li><b>Jorge</b> — cambios de molde, carga de máquinas y casi todo el mantenimiento</li>
+      <li><b>Coronel y equipo</b> — inyección</li>
+      <li><b>Manolo y Jordi</b> — revisión, embalaje, paletizado, almacén y expedición</li>
+      <li><b>Equipo de vías</b> — 8–10 personas, turno de día y de noche</li>
+    </ul></div>
+  </div>
+
+  <h3>Cuatro dependencias de una sola persona</h3>
+  <div class="grid3">
+    <div class="card"><h4>Comercial y francés</h4><p>Concentrados en Jonathan. Francia es el primer destino del calzado español y el principal mercado de Lollan's.</p></div>
+    <div class="card"><h4>Reparto y memoria de aparado</h4><p>Jesús lleva el control «él propio». Si falta, se pierde el mapa de quién tiene qué.</p></div>
+    <div class="card"><h4>Mantenimiento de inyección</h4><p>Jorge. La inyección es el cuello de botella cuando hay avería y no hay sección de mantenimiento asignada.</p></div>
+    <div class="card"><h4>Requisitos de etiquetado por cliente</h4><p>Marina. Cada cliente tiene su combinación de percha, bolsa, serret, etiqueta adhesiva y colgada.</p></div>
+  </div>
+
+  <p class="prose" style="margin-top:22px">Estas cuatro dependencias son <strong>el mejor argumento de venta interna de la
+  app</strong>: no se trata de controlar a nadie, sino de que el conocimiento deje de vivir solo en una cabeza.</p>
+
+  <h3>Tres formas de cobrar conviven en la misma nota</h3>
+  <p class="prose">Nómina en corte y reparto; pago por horas en goma, inyección y faltas de aparado; destajo en aparado
+  (tarifa por modelo) y en vías (tarifa por cliente). Hoy esto se liquida con Excel, libretas de las trabajadoras y
+  cupones que Marina teclea en Query. <strong>Cada cupón debe vincular persona, orden, operación, cantidad aceptada,
+  fecha y tarifa vigente</strong>, y esa es una de las funciones que más tiempo de oficina libera.</p>
+</section>
+
+<!-- ================= 07 ================= -->
+<section id="datos">
+  <div class="shead"><span class="num">07</span><h2>Datos maestros y KPIs</h2></div>
+  <p class="lede">Notion ya define seis bases maestras y catorce indicadores con su fórmula y su frecuencia.
+  <strong>Los catorce están en «Sin dato».</strong> No falta la definición: falta la captura.</p>
+
+  <div class="bars">
+    <div class="bar"><div class="top"><b>Procesos maestros</b><span>0 completos · 11 parciales · 4 sin cerrar</span></div>
+      <div class="track"><i class="seg-part" style="width:73.3%"></i><i class="seg-none" style="width:26.7%"></i></div></div>
+    <div class="bar"><div class="top"><b>KPIs con dato real</b><span>0 de 14 · 8 son críticos</span></div>
+      <div class="track"><i class="seg-none" style="width:100%"></i></div></div>
+    <div class="bar"><div class="top"><b>Activos con dato confirmado</b><span>0 confirmados · 4 estimados · 3 por validar · 1 histórico</span></div>
+      <div class="track"><i class="seg-part" style="width:50%"></i><i class="seg-none" style="width:50%"></i></div></div>
+    <div class="bar"><div class="top"><b>Cuentas de cliente clasificadas</b><span>0 de 8 · todas «Por clasificar»</span></div>
+      <div class="track"><i class="seg-none" style="width:100%"></i></div></div>
+  </div>
+  <div class="legend">
+    <span><i class="seg-ok"></i> confirmado</span>
+    <span><i class="seg-part"></i> parcial o estimado</span>
+    <span><i class="seg-none"></i> sin dato o sin validar</span>
+  </div>
+
+  <h3>Los 8 KPIs críticos ya definidos</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Indicador</th><th>Fórmula</th><th>Frecuencia</th><th>Área</th></tr></thead>
+      <tbody>
+        <tr><td class="board">OTIF</td><td class="mono">pedidos OTIF / entregados × 100</td><td>Semanal</td><td>Logística</td></tr>
+        <tr><td class="board">Rendimiento a la primera</td><td class="mono">buenos 1ª / procesados × 100</td><td>Por turno</td><td>Calidad</td></tr>
+        <tr><td class="board">Defectos por 100 pares</td><td class="mono">defectos / inspeccionados × 100</td><td>Por turno</td><td>Calidad</td></tr>
+        <tr><td class="board">OEE de inyección</td><td class="mono">disponibilidad × rendimiento × calidad</td><td>Por turno</td><td>Producción</td></tr>
+        <tr><td class="board">Pares buenos por hora</td><td class="mono">pares aceptados / horas productivas</td><td>Por turno</td><td>Producción</td></tr>
+        <tr><td class="board">WIP por etapa</td><td class="mono">conteo de pares por estado</td><td>Diaria</td><td>Producción</td></tr>
+        <tr><td class="board">Valor y días de inventario</td><td class="mono">valor stock; stock / consumo diario</td><td>Semanal</td><td>Inventario</td></tr>
+        <tr><td class="board">Margen por modelo y cliente</td><td class="mono">ingreso neto − coste completo</td><td>Mensual</td><td>Finanzas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="prose" style="margin-top:24px">Fíjate en la frecuencia: <strong>cinco de los ocho son «por turno» o «diaria»</strong>.
+  Eso significa que el dato no puede introducirse en la oficina al final del día. Tiene que capturarse en el punto de
+  trabajo, en el momento, desde el móvil — y ese es precisamente el argumento para que la app sea móvil primero.</p>
+
+  <h3>Las seis bases maestras que ya existen en Notion</h3>
+  <p class="prose">Catálogo maestro de producto y materiales · Procesos maestros · Activos y capacidades ·
+  Indicadores y datos pendientes · Clientes y oportunidades · Riesgos, mejoras y decisiones. Son el punto de partida
+  del esquema de la base de datos: no hay que diseñarlo desde cero, hay que traducirlo a tablas transaccionales.</p>
+</section>
+
+<!-- ================= 08 ================= -->
+<section id="capacidad">
+  <div class="shead"><span class="num">08</span><h2>Capacidad: la cifra que no se puede usar</h2></div>
+
+  <div class="note stop">
+    <span class="lbl">Advertencia importante antes de prometer nada a un cliente</span>
+    <p>La documentación calcula un techo teórico de <strong>240 pares/hora por máquina</strong> y
+    <strong>9.600 pares/día</strong>. Ese número asume que cada estación entrega un par por vuelta y no descuenta cambios
+    de molde, averías, descansos, falta de material, velocidad por modelo, rechazo, ni el cuello de botella de aparado,
+    vías o embalaje. <strong>No es capacidad comprometible.</strong></p>
+  </div>
+
+  <p class="prose" style="margin-top:24px">La fórmula correcta ya está escrita en Notion y debería estar codificada en la app:</p>
+  <div class="card" style="margin-top:14px; max-width:68ch">
+    <p style="color:var(--ink)"><strong>Capacidad vendible</strong> = mínimo de (demanda confirmada, materiales
+    disponibles, corte, aparado, inyección/vulcanización, vías/calidad, embalaje/transporte, liquidez).</p>
+    <p style="margin-top:10px">Y por etapa: <strong>capacidad efectiva</strong> = capacidad nominal × disponibilidad ×
+    rendimiento × calidad.</p>
+  </div>
+
+  <h3>Inventario de activos, con su nivel de confianza</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Activo</th><th>Cantidad</th><th>Planta</th><th>Estado del dato</th></tr></thead>
+      <tbody>
+        <tr><td class="board">Máquinas de inyección</td><td class="num">4</td><td>Caravaca</td><td><span class="pill warn">Por validar</span></td></tr>
+        <tr><td class="board">Estaciones rotativas por operario</td><td class="num">12 · 240 pares/h teóricos</td><td>Caravaca</td><td><span class="pill warn">Estimado</span></td></tr>
+        <tr><td class="board">Prensas de corte</td><td class="num">4</td><td>Caravaca</td><td><span class="pill warn">Por validar</span></td></tr>
+        <tr><td class="board">Troqueles</td><td class="num">+100</td><td>Caravaca</td><td><span class="pill warn">Estimado</span></td></tr>
+        <tr><td class="board">Puestos de vulcanizado</td><td class="num">~20</td><td>Alhama</td><td><span class="pill warn">Estimado</span></td></tr>
+        <tr><td class="board">Red de aparadoras externas</td><td class="num">10–15</td><td>Externo</td><td><span class="pill warn">Estimado</span></td></tr>
+        <tr><td class="board">Instalación fotovoltaica</td><td class="num">100 kW pico</td><td>Caravaca</td><td><span class="pill warn">Por validar</span></td></tr>
+        <tr><td class="board">Camión MAN (2007)</td><td class="num">114 m³ · 22 t ideales</td><td>Caravaca</td><td><span class="pill">Histórico</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose" style="margin-top:20px">Un dato deja de estar «por validar» solo cuando tiene <strong>unidad, periodo,
+  fuente, propietario y contraste</strong>. La app debería mostrar ese sello junto a cada cifra, igual que lo hace Notion
+  hoy: una capacidad sin nivel de confianza es una promesa que alguien acabará incumpliendo.</p>
+</section>
+
+<!-- ================= 09 ================= -->
+<section id="dolor">
+  <div class="shead"><span class="num">09</span><h2>Dónde duele hoy</h2></div>
+  <p class="lede">Ocho problemas que la documentación describe con nombre propio. Cada uno es una funcionalidad
+  concreta de la app, no una queja genérica.</p>
+
+  <div class="grid2">
+    <div class="card"><h4>Faltas detectadas demasiado tarde</h4><p>Se ven en vías o en embalaje, cuando el par ya ha pasado por corte, aparado e inyección. Reabren todo el ciclo.</p><ul><li><b>Solución:</b> conteo firmado en cada entrega y control previo obligatorio antes de suela.</li></ul></div>
+    <div class="card"><h4>Notas incompletas o perdidas en el reparto</h4><p>«Supone un descontrol muchas veces a nivel de gestión de notas por la pérdida de notas, mala calidad o notas incompletas.»</p><ul><li><b>Solución:</b> cupón digital con firma y foto en entrega y recogida.</li></ul></div>
+    <div class="card"><h4>Tejido que no da de sí</h4><p>Muchos tejidos tienen medidas o trazas que no siguen los patrones. «Pido más y puede que sobre, pido justo y puede que falte.»</p><ul><li><b>Solución:</b> consumo real por nota frente a consumo estándar, por proveedor y por partida.</li></ul></div>
+    <div class="card"><h4>Traslados a Alhama sin trazabilidad</h4><p>No hay albarán interno. No se sabe qué salió, qué llegó, qué se perdió ni quién responde.</p><ul><li><b>Solución:</b> albarán interno con bultos identificados y estado de tránsito visible.</li></ul></div>
+    <div class="card"><h4>Recuentos repetidos</h4><p>Se cuenta en vías, se cuenta en embalaje, se cuenta contra la nota y se cuenta contra el pedido. Marina cruza cuentas con las libretas de las trabajadoras.</p><ul><li><b>Solución:</b> un único conteo por operación que alimenta a la vez producción, calidad y liquidación a destajo.</li></ul></div>
+    <div class="card"><h4>Mantenimiento reactivo</h4><p>No hay sección de mantenimiento. La inyección es el cuello de botella cuando hay avería.</p><ul><li><b>Solución:</b> registro de máquina, molde, lote, turno y operador en cada producción; horas de uso por molde.</li></ul></div>
+    <div class="card"><h4>Miles de kilos de goma sin coste calculado</h4><p>Decenas de miles de kilos almacenados «para que nunca falte», parte con ftalatos y no servible a muchos clientes. Nadie ha calculado el coste de almacenarlo.</p><ul><li><b>Solución:</b> inventario con lote, valor, antigüedad y bloqueo por cumplimiento.</li></ul></div>
+    <div class="card"><h4>Clientes que envían sus propios revisores</h4><p>Revisores externos se instalan en el almacén. «Si fuésemos buenos con la constancia de calidad y servicio no tendrían que revisarla.»</p><ul><li><b>Solución:</b> liberación documentada con evidencia fotográfica por lote.</li></ul></div>
+  </div>
+</section>
+
+<!-- ================= 10 ================= -->
+<section id="app">
+  <div class="shead"><span class="num">10</span><h2>Qué tiene que ser la web app</h2></div>
+  <p class="lede">Un Monday especializado para esta fábrica: mismos movimientos de nota, mismos estados, mismas
+  automatizaciones — pero con el modelo de datos correcto debajo y con la captura pensada para el móvil de un operario.</p>
+
+  <h3>13 módulos funcionales</h3>
+  <div class="grid3">
+    <div class="card"><h4>1 · Usuarios y permisos</h4><p>Roles, permisos por sección y registro de auditoría.</p></div>
+    <div class="card"><h4>2 · Comercial</h4><p>Clientes, contactos, muestras, ofertas, pedidos y reclamaciones.</p></div>
+    <div class="card"><h4>3 · Producto</h4><p>Modelos, versiones, listas de materiales, fichas técnicas, fotos y certificados.</p></div>
+    <div class="card"><h4>4 · Compras</h4><p>Proveedores, pedidos, albaranes y recepción.</p></div>
+    <div class="card"><h4>5 · Inventario</h4><p>Artículo, lote, ubicación, reserva y movimiento inmutable.</p></div>
+    <div class="card"><h4>6 · Órdenes y WIP</h4><p>Notas, rutas, fases y operaciones por turno.</p></div>
+    <div class="card"><h4>7 · Aparado externo</h4><p>Reparto, cupones, aceptación y liquidación a destajo.</p></div>
+    <div class="card"><h4>8 · Transferencias</h4><p>Albarán interno Caravaca–Alhama con estado de tránsito.</p></div>
+    <div class="card"><h4>9 · Calidad</h4><p>Defectos por origen y causa, reparaciones y liberación.</p></div>
+    <div class="card"><h4>10 · Activos</h4><p>Moldes, troqueles, mantenimiento, averías y repuestos.</p></div>
+    <div class="card"><h4>11 · Costes</h4><p>Escandallo, márgenes, energía, pago por pieza y transporte.</p></div>
+    <div class="card"><h4>12 · Expediciones</h4><p>Packing lists, pallets, cita de carga y entrega.</p></div>
+    <div class="card"><h4>13 · Documentos</h4><p>Fotografías, comentarios y firma sobre cualquier entidad.</p></div>
+  </div>
+
+  <h3>Requisitos no negociables para el uso en planta</h3>
+  <div class="grid2">
+    <div class="card"><h4>Diseño para manos ocupadas</h4><ul>
+      <li>Botones grandes, poco texto, una acción principal por pantalla</li>
+      <li>Lectura por cámara o código para identificar nota, lote y ubicación</li>
+      <li>Funcionamiento sin conexión en las operaciones críticas, con sincronización posterior</li>
+      <li>Recuperación ante error: nada se pierde si se cierra la app a media captura</li>
+    </ul></div>
+    <div class="card"><h4>Gobierno del dato desde el día uno</h4><ul>
+      <li>Los movimientos de inventario y producción no se sobrescriben: se anexan</li>
+      <li>Cada dato crítico lleva fuente, responsable, fecha y estado de validación</li>
+      <li>Permisos mínimos por rol y registro de auditoría completo</li>
+      <li>Sin contraseñas ni datos personales innecesarios almacenados</li>
+    </ul></div>
+  </div>
+
+  <h3>Convivencia con lo que ya hay</h3>
+  <p class="prose"><strong>Query Pro</strong> sigue siendo el ERP administrativo (facturación, contabilidad, Intrastat,
+  modelo 349) hasta que se mapee la integración. <strong>Notion</strong> queda como capa de conocimiento, procedimientos
+  y decisiones. <strong>La app nueva</strong> se queda con lo transaccional: movimientos, órdenes, inventario, calidad,
+  costes y usuarios. El puente crítico a resolver pronto es la salida de notas de fabricación de Query, que hoy pasa por
+  PDF impreso, carpeta de Dropbox y un escenario de Make.</p>
+</section>
+
+<!-- ================= 11 ================= -->
+<section id="pantallas">
+  <div class="shead"><span class="num">11</span><h2>Las pantallas, por rol</h2></div>
+  <p class="lede">Punto de partida para la siguiente conversación. Cada persona debería entrar y ver
+  <strong>una sola lista: lo suyo, hoy</strong>. Nada de navegar un tablero completo.</p>
+
+  <div class="grid2">
+    <div class="screen"><span class="role">Operario de corte</span><h4>Mis notas de hoy</h4><ul>
+      <li>Lista ordenada por prioridad (urgente primero), filtrada por su nombre</li>
+      <li>Cada nota: modelo, foto patrón, pares, tallas, tejido y planta como dos tareas separadas</li>
+      <li>Tres botones: Empezar · Pausar · Hecho — el cronómetro corre solo</li>
+      <li>Botón «Falta» que obliga a decir qué falta y cuánto, con foto</li>
+    </ul></div>
+    <div class="screen"><span class="role">Jesús · reparto</span><h4>Ruta de hoy</h4><ul>
+      <li>Mapa de entregas y recogidas por aparadora</li>
+      <li>Entrega: escanear nota, confirmar pares y pasos, firma de la aparadora</li>
+      <li>Recogida: contar pares aceptados y rechazados, foto de incidencia</li>
+      <li>Vista «quién tiene qué» en tiempo real — el conocimiento que hoy solo está en su cabeza</li>
+    </ul></div>
+    <div class="screen"><span class="role">Inyección · Coronel y equipo</span><h4>Cola de máquina</h4><ul>
+      <li>Qué nota va en qué máquina y con qué molde</li>
+      <li>Registro de máquina, molde, lote, turno y operador al arrancar</li>
+      <li>Contador de pares buenos y rechazados durante el turno</li>
+      <li>Parada con causa en un toque: avería, cambio de molde, falta de material, descanso</li>
+    </ul></div>
+    <div class="screen"><span class="role">Marina · vías y embalaje</span><h4>Reparto de vías</h4><ul>
+      <li>Asignar notas a cada persona de la vía y ver el avance</li>
+      <li>Ficha de embalaje por cliente: percha, bolsa, serret, etiquetas, caja — precargada</li>
+      <li>Recuento final contra nota y pedido, con las faltas calculadas solas</li>
+      <li>Liquidación de destajo por cliente, generada del conteo — se acabó el Excel</li>
+    </ul></div>
+    <div class="screen"><span class="role">Cati · oficina</span><h4>Pedidos y materiales</h4><ul>
+      <li>Pedidos por fecha comprometida, con semáforo de riesgo</li>
+      <li>Qué material falta para liberar cada nota, y a qué proveedor se le reclamó</li>
+      <li>Alta de nota con los datos ya extraídos, solo para revisar y confirmar</li>
+      <li>Bandeja de faltas abiertas de más de 24 h</li>
+    </ul></div>
+    <div class="screen"><span class="role">Almacén · Manolo y Jordi</span><h4>Preparación de carga</h4><ul>
+      <li>Cargas de la semana por cliente, fecha y hora, con estado de preparación</li>
+      <li>Palés, bultos y pares, con avance de paletizado</li>
+      <li>Camión de Lollan's o del cliente</li>
+      <li>Packing list y cita de carga desde la misma pantalla</li>
+    </ul></div>
+    <div class="screen"><span class="role">Jaime · dirección</span><h4>Estado de la fábrica</h4><ul>
+      <li>Pedidos en riesgo de incumplir fecha, ordenados por importe</li>
+      <li>WIP por etapa: dónde está atascada la producción ahora mismo</li>
+      <li>Faltas abiertas y su coste estimado</li>
+      <li>Cargas de la semana y prioridades: pendiente → en curso → hecha</li>
+    </ul></div>
+    <div class="screen"><span class="role">Jonathan · comercial</span><h4>Cartera y muestras</h4><ul>
+      <li>Cuentas por facturación, margen, potencial y riesgo</li>
+      <li>Embudo muestra → oferta → pedido, con motivo de pérdida</li>
+      <li>Estado de fabricación de sus pedidos, sin tener que preguntar en oficina</li>
+      <li>Ferias y visitas con objetivo, coste y retorno</li>
+    </ul></div>
+  </div>
+
+  <div class="note">
+    <span class="lbl">Lo que ya está prototipado</span>
+    <p>El prototipo v2 y v3 documentados en Notion ya cubren tres accesos para Jaime: <strong>cargas de la semana</strong>
+    (plan mensual navegable, fotos de producto, pares, bultos, palés, camión propio o de cliente),
+    <strong>prioridades de la semana</strong> (pendiente → en curso → hecha) e <strong>inventario de embalaje</strong>
+    (cajas, perchas, bolsas, etiquetas, serret y film, con alerta de mínimo). Están validados a 390 y 320 px y funcionan
+    sin conexión, pero guardan solo en el dispositivo: necesitan servidor para que Antonio y Jaime vean lo mismo.</p>
+  </div>
+</section>
+
+<!-- ================= 12 ================= -->
+<section id="plan">
+  <div class="shead"><span class="num">12</span><h2>Por dónde empezar</h2></div>
+  <p class="lede">El orden importa más que la velocidad. Construir el módulo de costes antes de tener el conteo fiable
+  produce números bonitos y falsos.</p>
+
+  <div class="phases">
+    <div class="phase"><div class="when">Fase 0 · ahora</div><div>
+      <h4>Cerrar el inventario de lo que hay</h4>
+      <p>Antes de escribir código, completar lo que este análisis no ha podido ver:</p>
+      <ul>
+        <li>Export del blueprint de cada escenario de Make, o capturas de la lista completa</li>
+        <li>Token de API de Monday de solo lectura, o export de columnas de cada tablero</li>
+        <li>Confirmar qué automatizaciones son nativas de Monday y cuáles pasan por Make</li>
+        <li>Decidir el punto exacto de retorno desde Alhama y quién firma cada extremo</li>
+      </ul>
+    </div></div>
+
+    <div class="phase"><div class="when">Fase 1 · piloto</div><div>
+      <h4>Un solo flujo extremo a extremo: la nota</h4>
+      <p>Nota, fases, estados y faltas. Nada más. Es el corazón del sistema y el que valida si la gente lo usa.</p>
+      <ul>
+        <li>Entidad Nota con ruta, prioridad, fases y estados idénticos a los que ya usan</li>
+        <li>Corte con tejido y planta como tareas separadas, cronómetro y falta con comentario obligatorio</li>
+        <li>Circuito de faltas completo, con vuelta a la fase de origen</li>
+        <li>Pantalla móvil de operario y vista global de oficina</li>
+      </ul>
+    </div></div>
+
+    <div class="phase"><div class="when">Fase 2</div><div>
+      <h4>Los dos puntos ciegos</h4>
+      <p>Donde el sistema actual no ve nada y donde más se pierde.</p>
+      <ul>
+        <li>Aparado externo: cupón digital con entrega, recogida, aceptación y firma</li>
+        <li>Transferencias Caravaca–Alhama: albarán interno con bultos y estado de tránsito</li>
+      </ul>
+    </div></div>
+
+    <div class="phase"><div class="when">Fase 3</div><div>
+      <h4>Medir de verdad</h4>
+      <p>Con la captura ya en marcha, los KPIs se llenan solos.</p>
+      <ul>
+        <li>WIP por etapa, pares buenos/hora, defectos por 100 pares y rendimiento a la primera</li>
+        <li>Partes diarios y semanales por sección y persona, sustituyendo los seis tableros de Monday</li>
+        <li>Liquidación automática de destajo de aparado y vías</li>
+      </ul>
+    </div></div>
+
+    <div class="phase"><div class="when">Fase 4</div><div>
+      <h4>Coste, margen y capacidad</h4>
+      <p>Solo cuando los conteos sean fiables. Antes, no.</p>
+      <ul>
+        <li>Escandallo por modelo con consumo real frente a estándar</li>
+        <li>Margen por modelo, cliente y pedido</li>
+        <li>Capacidad efectiva por etapa y capacidad vendible con su cuello de botella</li>
+      </ul>
+    </div></div>
+
+    <div class="phase"><div class="when">Fase 5</div><div>
+      <h4>Integrar y escalar</h4>
+      <p>Cerrar el círculo con lo que ya existe.</p>
+      <ul>
+        <li>Puente con Query Pro para pedidos, notas y facturación, sustituyendo el PDF por Dropbox</li>
+        <li>Inventario con lote, ubicación y bloqueo por cumplimiento (ftalatos, REACH)</li>
+        <li>CRM, muestras y reclamaciones</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ================= 13 ================= -->
+<section id="decisiones">
+  <div class="shead"><span class="num">13</span><h2>Lo que necesito que decidas</h2></div>
+  <p class="lede">Nueve decisiones que condicionan el diseño de las pantallas. No hace falta responderlas todas hoy,
+  pero las cuatro primeras bloquean la Fase 1.</p>
+
+  <div class="q"><div class="qq"><em>01</em><span>¿La app sustituye a Monday, o convive con él durante la transición?</span></div>
+    <p>Si sustituye, la Fase 1 tiene que cubrir todo el circuito de la nota antes de apagar nada. Si convive, hay que decidir cuál manda cuando los dos tengan el mismo dato.</p></div>
+  <div class="q"><div class="qq"><em>02</em><span>¿De dónde entra la nota de fabricación?</span></div>
+    <p>Seguir con Query → PDF → Dropbox → extracción automática, o atacar Query directamente. Lo primero se monta en días; lo segundo es lo correcto a medio plazo.</p></div>
+  <div class="q"><div class="qq"><em>03</em><span>¿Quién firma la salida y la recepción entre Caravaca y Alhama?</span></div>
+    <p>El proceso figura con responsable «Por asignar». Sin un nombre no se puede diseñar la pantalla de transferencia.</p></div>
+  <div class="q"><div class="qq"><em>04</em><span>¿Las aparadoras entran en la app, o solo Jesús?</span></div>
+    <p>Cambia por completo el módulo 7: o es una app para 15 personas externas con su propio acceso, o es una pantalla de captura para el repartidor.</p></div>
+  <div class="q"><div class="qq"><em>05</em><span>¿Qué pasa con Trello y los Excel de cuentas?</span></div>
+    <p>Cati usa Trello para seguimiento de notas; Marina lleva vías, embalaje y aparado en Excel y libretas. ¿Se migran en Fase 1 o se dejan vivir?</p></div>
+  <div class="q"><div class="qq"><em>06</em><span>¿Móvil propio o dispositivo de fábrica?</span></div>
+    <p>Determina el diseño del login, la sesión y el modo sin conexión. Un tablet compartido por sección no se diseña igual que el móvil personal de cada uno.</p></div>
+  <div class="q"><div class="qq"><em>07</em><span>¿Se identifican las notas con código QR o de barras?</span></div>
+    <p>Es la diferencia entre teclear un número de nota con las manos sucias y apuntar la cámara. Afecta a la impresión de la nota en Query.</p></div>
+  <div class="q"><div class="qq"><em>08</em><span>¿Los datos de destajo son visibles para quien cobra?</span></div>
+    <p>Una aparadora o una persona de vías viendo su propio conteo en tiempo real elimina la reconciliación con libretas, pero es una decisión de gestión de personas, no técnica.</p></div>
+  <div class="q"><div class="qq"><em>09</em><span>¿Alhama entra en la Fase 1 o después?</span></div>
+    <p>Es media empresa y es donde menos visibilidad hay. Incluirla desde el principio es más difícil, pero dejarla fuera repite el problema actual.</p></div>
+</section>
+
+<footer>
+  <p><strong>Fuentes.</strong> Todo lo anterior está reconstruido de la documentación de Notion de Lollan's: el Sistema
+  Operativo Empresarial (secciones 00 a 11 y sus seis bases maestras), el Manual Operativo de Monday.com, la Guía de uso
+  para el equipo de corte, la página Organización con Monday, la Documentación general con el resumen por secciones y los
+  listados de tareas de Santos, Marina, Cati, Jonathan y Antonio hijo, y el Flujo de Producción de la fábrica.</p>
+  <p style="margin-top:12px">Los datos marcados como estimados, por validar o históricos se han mantenido con esa etiqueta
+  deliberadamente. Ninguna cifra de capacidad, coste o consumo de este documento debe usarse para comprometer un pedido
+  sin validarla antes en planta.</p>
+</footer>
+
+</div>
