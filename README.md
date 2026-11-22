@@ -15,6 +15,8 @@ Fase 0 — análisis. Todavía no hay código de aplicación.
 
 | Documento | Contenido |
 |---|---|
+| [`CLAUDE.md`](CLAUDE.md) | Contexto rápido del proyecto (leer primero) |
+| [`docs/BITACORA.md`](docs/BITACORA.md) | Registro de cambios y decisiones |
 | [`docs/analisis/01-radiografia-operativa.md`](docs/analisis/01-radiografia-operativa.md) | Análisis completo: flujos, tableros, automatizaciones, datos y plan |
 | [`docs/presentaciones/radiografia-operativa.html`](docs/presentaciones/radiografia-operativa.html) | La misma información como presentación navegable |
 
